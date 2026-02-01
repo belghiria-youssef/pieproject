@@ -398,7 +398,7 @@
                 </div>
                 <?php endif; ?>
                 
-                <form action="/login" method="POST" class="login-form" id="loginForm">
+                <form action="/PIE_PROJECT/views/dashboard/index.php" method="POST" class="login-form" id="loginForm">
                     <input type="hidden" name="csrf_token" value="<?= $csrfToken ?? '' ?>">
                     
                     <div class="form-group">
@@ -478,8 +478,10 @@
             }
         }
         
-        // Form validation
+        // Form validation - redirect to dashboard
         document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
             const email = document.getElementById('email');
             const password = document.getElementById('password');
             let isValid = true;
@@ -498,8 +500,8 @@
                 password.classList.remove('is-invalid');
             }
             
-            if (!isValid) {
-                e.preventDefault();
+            if (isValid) {
+                window.location.href = '/PIE_PROJECT/views/dashboard/index.php';
             }
         });
         
